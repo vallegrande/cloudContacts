@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CloudContacts{% endblock %}</title>
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Agregar Nuevo Contacto</h2>
+        
+        <form action="{{ url_for('add_contact') }}" method="POST" class="space-y-6">
+            <!-- Nombre Completo -->
+            <div>
+                <label for="full_name" class="block text-sm font-medium text-gray-700 mb-2">
+                    Nombre Completo *
+                </label>
+                <input type="text" 
+                       id="full_name" 
+                       name="full_name" 
+                       required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                       placeholder="Ingresa el nombre completo">
+            </div>
+
+            <!-- Correo Electrónico -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                    Correo Electrónico *
+                </label>
+                <input type="email" 
+                       id="email" 
+                       name="email" 
+                       required
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                       placeholder="ejemplo@correo.com">
+            </div>
+
+            <!-- Teléfono -->
+            <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">
+                    Teléfono (Opcional)
+                </label>
+                <input type="tel" 
+                       id="phone" 
+                       name="phone" 
+                       class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                       placeholder="+1 (555) 123-4567">
+            </div>
+
+            <!-- Botón de Envío -->
+            <div>
+                <button type="submit" 
+                        class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 font-medium">
+                    Agregar Contacto
+                </button>
+            </div>
+        </form>
+
+        <!-- Enlace a lista de contactos -->
+        <div class="mt-6 text-center">
+            <a href="{{ url_for('contacts') }}" 
+               class="text-blue-600 hover:text-blue-800 transition duration-200 font-medium">
+                Ver todos los contactos →
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</html>
